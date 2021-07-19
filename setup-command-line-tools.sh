@@ -2,7 +2,11 @@
 
 set -euo pipefail
 
+start_directory=
+
 main() {
+	start_directory=$(pwd)
+
 	setup_vim
 	setup_tmux
 
@@ -25,11 +29,13 @@ setup_vim() {
 	git_clone_or_update ~/.vim/pack/dist/start/vim-airline https://github.com/vim-airline/vim-airline
 
 	# Plugin initialisation
-	vim -u NONE -c "helptags vim-gitgutter/doc" -c q
+	vim -u NONE -c "helptags ~/.vim/pack/airblade/start/vim-gitgutter/doc" -c q
 	vim -u NONE -c "helptags ~/.vim/pack/dist/start/vim-airline/doc" -c q
 }
 
 setup_tmux() {
+	cd "${start_directory}"
+
 	# Placing config to it's place
 	cp ./.tmux.conf ~/.tmux.conf
 	mkdir ~/.tmux
