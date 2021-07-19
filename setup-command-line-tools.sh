@@ -59,13 +59,13 @@ setup_tmux() {
 	mkdir -p ~/.tmux
 
 	# Ensuring that the plugins directory is located at the right place
-	local mount_line
+	local mount_line tmux_home_plugins
+	tmux_home_plugins=~/.tmux/plugins
 	if mount_line=$(mount | grep -E '/home' 2>/dev/null); then
 		if [[ ${mount_line} =~ noexec ]]; then
 			# Plugin directory needs to be reside outside the home directory since plugins can not be executed from there
-			local tmux_plugin_directory tmux_home_plugins
+			local tmux_plugin_directory
 			tmux_plugin_directory=/opt/devtools/${USER}/tmux/plugins
-			tmux_home_plugins=~/.tmux/plugins
 
 			if [[ ! -d "${tmux_plugin_directory}" ]]; then
 				sudo mkdir -p "${tmux_plugin_directory}"
