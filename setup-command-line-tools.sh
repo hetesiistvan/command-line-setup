@@ -38,41 +38,43 @@ setup_tmux() {
 
 	# Placing config to it's place
 	cp ./.tmux.conf ~/.tmux.conf
-	mkdir ~/.tmux
+	mkdir -p ~/.tmux
 
 	# Ensuring that the plugins directory is located at the right place
 	local mount_line
 	if mount_line=$(mount | grep -E '/home' 2>/dev/null); then
 		if [[ ${mount_line} =~ noexec ]]; then
 			# Plugin directory needs to be reside outside the home directory since plugins can not be executed from there
-			local tmux_plugin_directory
+			local tmux_plugin_directory tmux_home_plugins
 			tmux_plugin_directory=/opt/devtools/${USER}/tmux/plugins
+			tmux_home_plugins=~/.tmux/plugins
+
 			if [[ ! -d "${tmux_plugin_directory}" ]]; then
 				sudo mkdir -p "${tmux_plugin_directory}"
 				sudo chown -R "${USER}":users "$(dirname "${tmux_plugin_directory}")"
 			fi
 
-			if [[ -d ~/.tmux/plugins ]]; then
+			if [[ -d "${tmux_home_plugins}" && ! -h "${tmux_home_plugins}" ]]; then
 				# Relocate already existing stuff (just for the case if something was already existing)
-				if [[ -n $(ls -1 ~/.tmux/plugins) ]]; then
-					mv ~/.tmux/plugins/* "${tmux_plugin_directory}/"
+				if [[ -n $(ls -1 "${tmux_home_plugins}") ]]; then
+					mv "${tmux_home_plugins}"/* "${tmux_plugin_directory}/"
 				fi
 
-				rmdir ~/.tmux/plugins
+				rmdir "${tmux_home_plugins}"
 			fi
 
-			if [[ ! -h ~/.tmux/plugins ]]; then
+			if [[ ! -h "${tmux_home_plugins}" ]]; then
 				(cd ~/.tmux; ln -s "${tmux_plugin_directory}" plugins)
 			fi
 		else
-			if [[ ! -d ~/.tmux/plugins ]]; then
-				mkdir -p ~/.tmux/plugins
+			if [[ ! -d "${tmux_home_plugins}" ]]; then
+				mkdir -p "${tmux_home_plugins}"
 			fi
 		fi
 	fi
 
 	# Fetching plugin repositories
-	git_clone_or_update ~/.tmux/plugins/tpm https://github.com/tmux-plugins/tpm
+	git_clone_or_update "${tmux_home_plugins}/tpm" https://github.com/tmux-plugins/tpm
 }
 
 print_tmux_manual_instructions() {
