@@ -1,0 +1,29 @@
+# This file contains useful Bash customisations. It needs to be surced in .bashrc
+
+## Git prompt
+git_prompt() {
+	local git_status_output
+	git_status_output=$(git status 2>/dev/null || true)
+
+	if [[ -z "${git_status_output}" ]]; then
+		echo " -"
+		return 0
+	fi
+
+	local line branch dirty_mark
+	dirty_mark=" *"
+	while read -r line; do
+		if [[ ${line} =~ ^On\ branch ]]; then
+			branch="${line##On branch }"
+		fi
+
+		if [[ ${line} =~ ^nothing\ to\ commit,\ working\ tree\ clean$ ]]; then
+			dirty_mark=""
+		fi
+	done <<< "${git_status_output}"
+	echo " ${branch}${dirty_mark}"
+}
+
+## Colorful prompt
+export PS1='\n\e[1;30;42m\u@\h\e[0m\e[32;44m\e[0m\e[1;30;44m\w\e[0m\e[0;34;46m\e[0m\e[1;30;46m$(git_prompt)\e[0m\e[0;36m\e[0m\n> \$ '
+

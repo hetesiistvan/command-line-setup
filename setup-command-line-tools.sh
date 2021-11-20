@@ -7,6 +7,7 @@ start_directory=
 main() {
 	start_directory=$(pwd)
 
+	setup_bash
 	setup_vim
 	setup_tmux
 
@@ -17,6 +18,30 @@ main() {
 	EOF
 
 	print_tmux_manual_instructions
+}
+
+setup_bash() {
+	cat <<- EOF
+	################################################################################
+	#### Setting up common Bash settings
+	################################################################################
+	EOF
+
+	cp bash_common_settings ~/
+
+	local source_instruction source_segment
+	source_instruction=". ~/bash_common_settings"
+	source_segment="\n## Sourcing commonly used Bash settings\n${source_instruction}\n"
+
+	if ! grep -q "${source_instruction}" ~/.bashrc; then
+		echo -e "${source_segment}" >> ~/.bashrc
+	fi
+
+	if [[ $(uname -s) == "Darwin" ]]; then
+		if ! grep -q "${source_instruction}" ~/.bash_profile; then
+			echo -e "${source_segment}" >> ~/.bash_profile
+		fi
+	fi
 }
 
 setup_vim() {
