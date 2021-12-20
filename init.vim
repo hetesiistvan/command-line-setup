@@ -8,6 +8,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ishan9299/nvim-solarized-lua'
 
 call plug#end()
 
@@ -29,4 +30,5 @@ let g:NERDTreeGitStatusUseNerdFonts = 1
 
 " Color settings
 set termguicolors
+colorscheme solarized
 
