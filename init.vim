@@ -27,3 +27,6 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 " NERDTree Git plugin configuration
 let g:NERDTreeGitStatusUseNerdFonts = 1
 
+" Color settings
+set termguicolors
+
