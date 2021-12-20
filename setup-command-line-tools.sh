@@ -103,6 +103,8 @@ setup_nvim() {
 		echo "Here goes the Linux part"
 	fi
 
+	nvim -u NONE -c "PlugInstall" -c q
+
 	echo -e "#### Done ✅\n"
 }
 
