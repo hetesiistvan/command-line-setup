@@ -9,6 +9,7 @@ main() {
 
 	setup_bash
 	setup_vim
+	setup_nvim
 	setup_tmux
 
 	cat <<- EOF
@@ -42,6 +43,8 @@ setup_bash() {
 			echo -e "${source_segment}" >> ~/.bash_profile
 		fi
 	fi
+
+	echo -e "#### Done ✅\n"
 }
 
 setup_vim() {
@@ -68,6 +71,39 @@ setup_vim() {
 	# Plugin initialisation
 	vim -u NONE -c "helptags ~/.vim/pack/airblade/start/vim-gitgutter/doc" -c q
 	vim -u NONE -c "helptags ~/.vim/pack/dist/start/vim-airline/doc" -c q
+
+	echo -e "#### Done ✅\n"
+}
+
+setup_nvim() {
+	cat <<- EOF
+	################################################################################
+	#### Setting up nvim
+	################################################################################
+	EOF
+
+	# Setting up configuration folder
+	local nvim_config_folder
+	nvim_config_folder="~/.config/nvim"
+	mkdir -p "${nvim_config_folder}"
+
+	# Placing nvim configuration to the config folder
+	cp "${start_directory}/init.vim" "${nvim_config_folder}/"
+
+	# Installing vim-plug
+	curl -sfLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+               https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+	# Installing JetBrains Mono Nerd font
+	if [[ $(uname -s) == "Darwin" ]]; then
+		brew tap homebrew/cask-fonts
+		brew install --cask font-jetbrains-mono
+		brew install --cask font-jetbrains-mono-nerd-font
+	else
+		echo "Here goes the Linux part"
+	fi
+
+	echo -e "#### Done ✅\n"
 }
 
 setup_tmux() {
@@ -118,6 +154,8 @@ setup_tmux() {
 
 	# Fetching plugin repositories
 	git_clone_or_update "${tmux_home_plugins}/tpm" https://github.com/tmux-plugins/tpm
+
+	echo -e "#### Done ✅\n"
 }
 
 print_tmux_manual_instructions() {
