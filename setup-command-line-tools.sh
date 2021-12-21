@@ -103,7 +103,7 @@ setup_nvim() {
 		echo "Here goes the Linux part"
 	fi
 
-	nvim -u NONE -c "PlugInstall" -c q
+	nvim -u NONE -c "PlugInstall" -c "helptags vim-gitgutter/doc" -c q
 
 	echo -e "#### Done ✅\n"
 }

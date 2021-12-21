@@ -9,6 +9,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ishan9299/nvim-solarized-lua'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -31,4 +32,9 @@ let g:NERDTreeGitStatusUseNerdFonts = 1
 " Color settings
 set termguicolors
 colorscheme solarized
+
+" Git gutter
+set updatetime=1000
+autocmd VimEnter * GitGutterLineHighlightsEnable
+autocmd VimEnter * GitGutterLineNrHighlightsEnable
 
