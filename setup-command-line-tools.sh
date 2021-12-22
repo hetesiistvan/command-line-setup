@@ -84,7 +84,7 @@ setup_nvim() {
 
 	# Setting up configuration folder
 	local nvim_config_folder
-	nvim_config_folder="~/.config/nvim"
+	nvim_config_folder="${HOME}/.config/nvim"
 	mkdir -p "${nvim_config_folder}"
 
 	# Placing nvim configuration to the config folder
