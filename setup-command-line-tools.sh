@@ -100,7 +100,10 @@ setup_nvim() {
 		brew install --cask font-jetbrains-mono
 		brew install --cask font-jetbrains-mono-nerd-font
 	else
-		echo "Here goes the Linux part"
+		local nerd_font_path
+		nerd_font_path="/media/data/WorkSync/repositories/tools/nerd-fonts"
+		git_clone_or_update "${nerd_font_path}" https://github.com/ryanoasis/nerd-fonts.git
+		find "${nerd_font_path}/patched-fonts/JetBrainsMono/Ligatures/" -type f -name '*.ttf' -exec cp {} ~/.fonts/ \;
 	fi
 
 	nvim -u NONE -c "PlugInstall" -c "helptags vim-gitgutter/doc" -c q
@@ -178,7 +181,7 @@ git_clone_or_update() {
 		cd "${target_directory}"
 		git pull
 	else
-		git clone "${git_repository}" "${target_directory}"
+		git clone --depth 1 "${git_repository}" "${target_directory}"
 	fi
 }
 
