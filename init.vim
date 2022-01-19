@@ -36,6 +36,6 @@ colorscheme solarized
 
 " Git gutter
 set updatetime=1000
-autocmd VimEnter * GitGutterLineHighlightsEnable
+" autocmd VimEnter * GitGutterLineHighlightsEnable
 autocmd VimEnter * GitGutterLineNrHighlightsEnable
 

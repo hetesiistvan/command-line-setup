@@ -106,7 +106,7 @@ setup_nvim() {
 		find "${nerd_font_path}/patched-fonts/JetBrainsMono/Ligatures/" -type f -name '*.ttf' -exec cp {} ~/.fonts/ \;
 	fi
 
-	nvim -u NONE -c "PlugInstall" -c "helptags vim-gitgutter/doc" -c q
+	nvim -u NONE -c "PlugInstall" -c "helptags vim-gitgutter/doc" -c "helptags vim-fugitive/doc" -c q
 
 	echo -e "#### Done ✅\n"
 }
