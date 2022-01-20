@@ -11,6 +11,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ishan9299/nvim-solarized-lua'
 Plug 'airblade/vim-gitgutter'
 Plug 'doronbehar/nvim-fugitive'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 call plug#end()
 
