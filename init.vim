@@ -9,6 +9,11 @@ autocmd BufNewFile,BufRead,BufReadPost *.lib set expandtab
 autocmd BufNewFile,BufRead,BufReadPost *.sh set shiftwidth=4
 autocmd BufNewFile,BufRead,BufReadPost *.sh set expandtab
 
+" Displaying whitespace
+set list
+"set listchars=nbsp:_,tab:>-,trail:~,extends:>,precedes:<
+set listchars=space:.,nbsp:.,multispace:-,tab:\\u21A3\\u00B7,trail:.,conceal:*,extends:\\u1433,precedes:\\u1438
+
 " Plugin configuration
 call plug#begin('~/.config/nvim/plugged')
 
@@ -50,6 +55,7 @@ autocmd VimEnter * nnoremap ,n :NERDTreeToggle<CR>
 
 " Color settings
 set termguicolors
+let g:solarized_visibility = 'low'
 colorscheme solarized
 
 " Git gutter

@@ -30,3 +30,7 @@ export PS1='\n\e[1;30;42m\u@\h\e[0m\e[32;44m\e[0m\e[1;30;44m\w\e[0m\e[0;34;46
 ## VI mode
 set -o vi
 
+## Aliases
+alias gb="gitin branch"
+alias gs="gitin status"
+
