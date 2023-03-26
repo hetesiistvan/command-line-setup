@@ -33,6 +33,7 @@ Plug 'vim-scripts/taglist.vim'
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'iamcco/markdown-preview.nvim'
 
 call plug#end()
 

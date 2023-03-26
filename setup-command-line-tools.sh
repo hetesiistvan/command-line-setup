@@ -109,6 +109,7 @@ setup_nvim() {
     fi
 
     nvim -u NONE -c "PlugInstall" -c q
+    nvim -u NONE -c "call mkdp#util#install()" -c q
     (cd ~/.config/nvim/plugged && nvim -u NONE -c "helptags ." -c q)
 
     echo -e "#### Done ✅\n"
