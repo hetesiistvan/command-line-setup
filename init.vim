@@ -11,6 +11,7 @@ autocmd BufNewFile,BufRead,BufReadPost *.sh set expandtab
 " Enabling tab replacement for the Terraform files
 autocmd BufNewFile,BufRead,BufReadPost *.tf set shiftwidth=2
 autocmd BufNewFile,BufRead,BufReadPost *.tf set expandtab
+autocmd BufNewFile,BufRead,BufReadPost *.tf set filetype=tf
 
 " Displaying whitespace
 set list
