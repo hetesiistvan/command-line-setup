@@ -6,8 +6,11 @@ set tabstop=4
 " Enabling tab replacement for the scripts
 autocmd BufNewFile,BufRead,BufReadPost *.lib set shiftwidth=4
 autocmd BufNewFile,BufRead,BufReadPost *.lib set expandtab
+autocmd BufNewFile,BufRead,BufReadPost *.lib set filetype=bash
+autocmd BufNewFile,BufRead,BufReadPost *.lib set syntax=bash
 autocmd BufNewFile,BufRead,BufReadPost *.sh set shiftwidth=4
 autocmd BufNewFile,BufRead,BufReadPost *.sh set expandtab
+autocmd BufNewFile,BufRead,BufReadPost *.sh set filetype=bash
 " Enabling tab replacement for the Terraform files
 autocmd BufNewFile,BufRead,BufReadPost *.tf set shiftwidth=2
 autocmd BufNewFile,BufRead,BufReadPost *.tf set expandtab
@@ -95,9 +98,7 @@ let g:ale_sh_shfmt_options = "-i 4"
 autocmd VimEnter * nnoremap <silent> _f :Files<CR>
 autocmd VimEnter * nnoremap <silent> _a :Ag <C-R><C-W><CR>
 autocmd VimEnter * vnoremap _a y:Ag <C-R>"<CR>
-
-" *.lib extension
-autocmd BufNewFile,BufRead,BufReadPost *.lib set syntax=bash
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 
 " Generic keyboard shortcuts
 autocmd VimEnter * map <silent> _c :let @/=""<CR>
