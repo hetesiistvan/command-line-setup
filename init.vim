@@ -36,8 +36,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'vim-scripts/taglist.vim'
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'iamcco/markdown-preview.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -72,7 +73,7 @@ autocmd VimEnter * nnoremap _<F3> :let g:solarized_visibility='normal'<CR>:color
 autocmd VimEnter * nnoremap _<F4> :let g:solarized_visibility='low'<CR>:colorscheme solarized<CR>
 
 " Git gutter
-set updatetime=1000
+set updatetime=300
 " autocmd VimEnter * GitGutterLineHighlightsEnable
 autocmd VimEnter * GitGutterLineNrHighlightsEnable
 
@@ -125,7 +126,8 @@ lua << EOF
 require('bufferline').setup {
 		options = {
 				mode = "tabs",
-				numbers = "ordinal"
+				numbers = "ordinal",
+                sort_by = "tabs"
 				}
 		}
 EOF
