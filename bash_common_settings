@@ -34,3 +34,6 @@ set -o vi
 alias gb="gitin branch"
 alias gs="gitin status"
 
+## History handling
+shopt -s histappend
+
