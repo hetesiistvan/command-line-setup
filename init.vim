@@ -20,6 +20,8 @@ autocmd BufNewFile,BufRead,BufReadPost *.tf set filetype=tf
 set list
 "set listchars=nbsp:_,tab:>-,trail:~,extends:>,precedes:<
 set listchars=space:.,nbsp:.,multispace:-,tab:\\u21A3\\u00B7,trail:.,conceal:*,extends:\\u1433,precedes:\\u1438
+autocmd VimEnter * nnoremap _<F5> :set listchars=space:.,nbsp:.,multispace:-,tab:\\u21A3\\u00B7,trail:.,conceal:*,extends:\\u1433,precedes:\\u1438
+autocmd VimEnter * nnoremap _<F6> :set listchars=
 
 " Plugin configuration
 call plug#begin('~/.config/nvim/plugged')
@@ -121,6 +123,9 @@ autocmd VimEnter * nnoremap <silent> _tl :tablast<CR>
 " Config editing
 autocmd VimEnter * nnoremap _<F1> :e ~/.config/nvim/init.vim<CR>
 autocmd VimEnter * nnoremap _<F2> :source ~/.config/nvim/init.vim<CR>
+
+" Format settings
+set textwidth=120
 
 lua << EOF
 require('bufferline').setup {
